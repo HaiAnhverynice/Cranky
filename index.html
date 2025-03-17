@@ -22,10 +22,19 @@
             background-position: center;
             top: 20px;
             left: 20px;
-            border: 2px solid rgba(0, 0, 0, 0.6);
+            border: 2px solid rgb(0, 0, 0, 0.5);
+            box-shadow: 
+            0 0 0 2px #a96e00, 
+            0 0 0 4px #000000; 
             border-radius: 2px;
 
         }
+        .cooldown-box:hover {
+            box-shadow: 
+            0 0 0 2px #ffd484, 
+            0 0 0 4px #000000; 
+        }
+       
         .cooldown-fill {
             position: absolute;
             width: 66px;
@@ -35,6 +44,19 @@
             left: 20px;
             transform-origin: bottom;
             transform: scaleY(1);
+            pointer-events: none;
+            
+        }
+
+        .cooldown-text {
+            position: absolute;
+            top: 30px;
+            left: 100px;
+            font-family: 'Courier New', Courier, monospace;
+            width: 18rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.2s;
         }
         
         #text-container {
@@ -62,6 +84,7 @@
     <canvas id="myCanvas"></canvas>
     <div class="cooldown-box"></div>
     <div class="cooldown-fill" id="cooldownFill"></div>
+    <div class="cooldown-text">Ummmm.. this is the cooldown so Cranky doesn't get overfed</div>
     <div id="text-container"></div>
     <audio id="text-sound-1" src="text-sound-1.mp3"></audio>
     <audio id="text-sound-2" src="text-sound-2.mp3"></audio>
@@ -103,15 +126,14 @@
         const groundLevel = canvas.height - 20;
         let boxes = [];
         let canSpawn = true;
-        const cooldownTime = 1000;
+        const cooldownTime = 5000;
         let cooldownRemaining = 0;
 
         const texts = [
         "Hello I am Cranky",
-        "I like cookies",
-        "Feed me cookies",
-        "Cookies are my favourites",
-        "Do you have more cookies?"
+        "Clicking spawn cookies",
+        "If you feed me cookies I’ll tell you stuff",
+        "I like cookies very much"
         
     ];
         const textContainer = document.getElementById("text-container");
@@ -145,7 +167,17 @@
             }
             typeCharacter();
         }
-
+        
+        document.querySelector(".cooldown-box").addEventListener("mouseover", function() {
+        document.querySelector(".cooldown-text").style.opacity = "1";
+        document.querySelector(".cooldown-text").style.visibility = "visible";
+        }
+        )
+        document.querySelector(".cooldown-box").addEventListener("mouseout", function() {
+        document.querySelector(".cooldown-text").style.opacity = "0";
+        document.querySelector(".cooldown-text").style.visibility = "hidden";
+        }
+        )
         function drawSprite() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.save();
