@@ -57,6 +57,7 @@
             opacity: 0;
             visibility: hidden;
             transition: 0.2s;
+            pointer-events: none;
         }
         
         #text-container {
@@ -70,7 +71,7 @@
             font-weight: bold;
             white-space: pre-line; /* Keeps line breaks */
             text-align: center; /* Centers text */
-            
+            pointer-events: none;
             padding: 10px;
     
         }
@@ -86,11 +87,11 @@
     <div class="cooldown-fill" id="cooldownFill"></div>
     <div class="cooldown-text">Ummmm.. this is the cooldown so Cranky doesn't get overfed</div>
     <div id="text-container"></div>
-    <audio id="text-sound-1" src="text-sound-1.mp3"></audio>
-    <audio id="text-sound-2" src="text-sound-2.mp3"></audio>
-    <audio id="text-sound-3" src="text-sound-3.mp3"></audio>
-    <audio id="text-sound-4" src="text-sound-4.mp3"></audio>
-    <audio id="text-sound-5" src="text-sound-5.mp3"></audio>
+    <audio id="text-sound-1" src="click1.mp3"></audio>
+    <audio id="text-sound-2" src="click2.mp3"></audio>
+    <audio id="text-sound-3" src="click3.mp3"></audio>
+    <audio id="text-sound-4" src="click4.mp3"></audio>
+    <audio id="text-sound-5" src="click5.mp3"></audio>
     <script>
         const canvas = document.getElementById("myCanvas");
         const ctx = canvas.getContext("2d");
@@ -131,7 +132,7 @@
 
         const texts = [
         "Hello I am Cranky",
-        "Clicking spawn cookies",
+        "Clicking spawns cookies",
         "If you feed me cookies I’ll tell you stuff",
         "I like cookies very much"
         
@@ -145,7 +146,7 @@
             document.getElementById("text-sound-5")
         ];
         let textIndex = 0; // Index of the current text
-        const textSpeed = 50;
+        const textSpeed = 100;
         let playedTexts = []; // Array to track which texts have been played.
 
         function typeText() {
@@ -325,6 +326,8 @@
             drawSprite();
             animate();
         };
+
+        
     </script>
 </body>
 </html>
